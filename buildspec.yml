@@ -1,0 +1,15 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      python: 3.7
+  pre_build:
+    commands:
+      - echo Installing eb-cli...
+      - pip3 install awsebcli --upgrade
+  build:
+    commands:
+      - echo Build started on `date`
+      - eb deploy $EB_STAGE --staged
+    finally:
+      - echo Build completed on `date`
